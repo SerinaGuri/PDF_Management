@@ -1,27 +1,55 @@
 <script>
-  let { form } = $props();
+  let { data } = $props();
 </script>
 
-<h1 class="text-xl font-semibold text-gray-900 mb-6">Registrieren</h1>
+<div class="py-8">
+  <h1 class="text-3xl font-semibold text-gray-900 max-w-md">
+    Speichere und verwalte deine PDFs an einem Ort
+  </h1>
+  <p class="mt-3 text-gray-600 max-w-sm">
+    Lade Dokumente hoch, ordne sie deinem Konto zu und greife jederzeit wieder darauf zu — einfach und sicher.
+  </p>
 
-<form method="POST" class="flex flex-col gap-4 max-w-xs">
-  <label class="flex flex-col gap-1 text-sm text-gray-600">
-    Username
-    <input type="text" name="username" required class="border border-gray-300 rounded px-3 py-2 text-gray-900" />
-  </label>
-  <label class="flex flex-col gap-1 text-sm text-gray-600">
-    Passwort
-    <input type="password" name="password" required class="border border-gray-300 rounded px-3 py-2 text-gray-900" />
-  </label>
-  <button type="submit" class="self-start bg-gray-900 text-white text-sm font-medium px-4 py-2 rounded hover:bg-gray-700">
-    Registrieren
-  </button>
-</form>
+  {#if !data.user}
+    <div class="mt-6 flex gap-4">
+      <a href="/login" class="bg-gray-900 text-white text-sm font-medium px-4 py-2 rounded no-underline hover:bg-gray-700">
+        Einloggen
+      </a>
+      <a href="/register" class="text-gray-600 text-sm font-medium px-4 py-2 rounded border border-gray-300 no-underline hover:bg-gray-100">
+        Registrieren
+      </a>
+    </div>
+  {:else}
+    <div class="mt-6">
+      <a
+        href={data.user.role === 'admin' ? '/admin' : '/dashboard'}
+        class="bg-gray-900 text-white text-sm font-medium px-4 py-2 rounded no-underline hover:bg-gray-700"
+      >
+        Zu meinen PDFs
+      </a>
+    </div>
+  {/if}
+</div>
 
-{#if form?.error}
-  <p class="text-red-600 text-sm mt-3">{form.error}</p>
-{/if}
+<div class="mt-4 pt-10 border-t border-gray-200 grid gap-8">
+  <div>
+    <h2 class="text-sm font-semibold text-gray-900">Hochladen</h2>
+    <p class="text-sm text-gray-600 mt-1">
+      Lade deine PDF-Dateien direkt über dein Konto hoch.
+    </p>
+  </div>
 
-<p class="text-sm text-gray-500 mt-6">
-  Schon ein Konto? <a href="/login" class="text-gray-800 underline">Einloggen</a>
-</p>
+  <div>
+    <h2 class="text-sm font-semibold text-gray-900">Zugriff</h2>
+    <p class="text-sm text-gray-600 mt-1">
+      Lade deine Dateien jederzeit wieder herunter, egal von wo.
+    </p>
+  </div>
+
+  <div>
+    <h2 class="text-sm font-semibold text-gray-900">Sicher</h2>
+    <p class="text-sm text-gray-600 mt-1">
+      Nur du siehst deine eigenen Dateien — außer du bist Administrator.
+    </p>
+  </div>
+</div>
