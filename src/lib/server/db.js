@@ -37,3 +37,4 @@ export async function getAllPdfs() {
   `);
   return rows;
 }
+
