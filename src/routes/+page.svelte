@@ -1,11 +1,27 @@
-<div class="pt-8 pb-6">
-  <h1 class="text-4xl font-semibold leading-tight text-slate-900">
-    Deine PDFs, an einem Ort.
-  </h1>
-  <p class="mt-4 text-lg text-slate-600 max-w-md">
-    Lade Dokumente hoch, greife jederzeit darauf zu, verwalte sie sicher — ohne Papierkram.
-  </p>
-  <a href="/login" class="inline-block mt-6 bg-slate-900 text-white font-semibold px-5 py-2.5 rounded hover:bg-orange-800 no-underline">
-    Jetzt einloggen
-  </a>
-</div>
+<script>
+  let { form } = $props();
+</script>
+
+<h1 class="text-xl font-semibold text-gray-900 mb-6">Registrieren</h1>
+
+<form method="POST" class="flex flex-col gap-4 max-w-xs">
+  <label class="flex flex-col gap-1 text-sm text-gray-600">
+    Username
+    <input type="text" name="username" required class="border border-gray-300 rounded px-3 py-2 text-gray-900" />
+  </label>
+  <label class="flex flex-col gap-1 text-sm text-gray-600">
+    Passwort
+    <input type="password" name="password" required class="border border-gray-300 rounded px-3 py-2 text-gray-900" />
+  </label>
+  <button type="submit" class="self-start bg-gray-900 text-white text-sm font-medium px-4 py-2 rounded hover:bg-gray-700">
+    Registrieren
+  </button>
+</form>
+
+{#if form?.error}
+  <p class="text-red-600 text-sm mt-3">{form.error}</p>
+{/if}
+
+<p class="text-sm text-gray-500 mt-6">
+  Schon ein Konto? <a href="/login" class="text-gray-800 underline">Einloggen</a>
+</p>
