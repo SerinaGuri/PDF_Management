@@ -22,3 +22,5 @@
 {#if form?.error}
   <p style="color: red;">{form.error}</p>
 {/if}
+
+<p class="text-sm text-slate-500 mt-6">  Noch keinen Account? <a href="/register" class="text-orange-800">Hier registrieren</a></p>
